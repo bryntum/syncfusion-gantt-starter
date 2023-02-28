@@ -1,37 +1,106 @@
-# Essential JS 2 QuickStart
+# Syncfusion Gantt with CRUD
 
-This project is a skeleton application used to create [Essential JS 2](https://www.syncfusion.com/products/essential-js2) web application.
-
-The application contains Essential JS 2 button component for preview and all common settings are preconfigured.
+This project is a JS Syncfusion Gantt application with a server for perfroming CRUD operations.
 
 ## Getting Started
 
-To get started you need to clone the `ej2-quickstart` repository and navigate to `ej2-quickstart` location.
+To get started you need to clone the repository and navigate into the folder.
 
 ```
-git clone https://github.com/syncfusion/ej2-quickstart.git quickstart
-cd quickstart
+git clone https://github.com/ritza-co/syncfusion-gantt-starter syncfusion-gantt
+cd syncfusion-gantt
 ```
 
 ## Installing
 
-We can get all the Essential JS 2 components in a single npm package [`ej2`](https://www.npmjs.com/package/@syncfusion/ej2).
-
 We already configure the required packages in the `package.json` file.
 
-You can run the below command to install all dependent packages related to this seed project.
+You can run the below command to install all dependent packages related to this project.
 
 ```
 npm install
 ```
 
-## Testing
+## License Key
 
-This application is preconfigured with End-to-End testing and the test case is written in Jasmine.
+You need a license key from Syncfusion to initialize the project. Fist sign in to [Synfusion]() then navigate to [this page](https://www.syncfusion.com/account/manage-trials/downloads), and click the "Get License Key" button.
 
-We run the test scripts with [Protractor](http://www.protractortest.org/#/) end-to-end test runner. The test case file can be found in the `e2e` folder.
+Once you have your license key, swap out the `'<your-license-key>'` string in `src/app.ts` with your license key.
 
-Protractor can interact with our web application and verify the test scripts.
+## Setting up the Database
+
+In the `server.js` file, the Express server uses the MySQL2 library to connect to MySQL and run queries.
+
+Create a .env file in the root folder and add the following lines for connecting to the MySQL database that we’ll create:
+
+```bash
+DB_HOST='localhost'
+DB_USER='root'
+DB_PASSWORD='<your-password>'
+DB_DATABASE='syncfusion-gantt'
+```
+
+Don’t forget to add the root password for your MySQL server.
+
+We’ll install MySQL Server and MySQL Workbench. MySQL Workbench is a MySQL GUI that we’ll use to create a database with tables for the Gantt data and to run queries. Download MySQL Server and MySQL Workbench from the MySQL community downloads page. If you’re using Windows, you can use the MySQL Installer to download the MySQL products. Use the default configurations when configuring MySQL Server and Workbench. Make sure that you configure the MySQL Server to start at system startup for convenience.
+
+Open the MySQL Workbench desktop application. Open the local instance of the MySQL Server that you configured.
+
+We’ll write our MySQL queries in the query tab and execute the queries by pressing the yellow lightning bolt button.
+
+Creating a MySQL database for the Syncfusion data: Adding a table and adding example data.
+
+Let’s run some MySQL queries in MySQL Workbench to create, use, and populate a database for our Syncfusion Gantt. Execute the following query to create a database called `syncfusion-gantt`:
+
+```sql
+CREATE DATABASE syncfusion-gantt;
+```
+
+Run the following query so that we set our newly created database for use:
+
+```sql
+USE syncfusion-gantt;
+```
+
+Let’s create the table that we’ll need for our Syncfusion Gantt chart data:
+
+```sql
+CREATE TABLE `tasks` (
+    `TaskID` int NOT NULL,
+    `TaskName` varchar(255) DEFAULT NULL,
+    `StartDate` date DEFAULT NULL,
+    `EndDate` date DEFAULT NULL,
+    `Duration` int DEFAULT NULL,
+    `Progress` int DEFAULT NULL,
+    `ParentID` int DEFAULT NULL,
+    `Predecessor` varchar(255) DEFAULT NULL,
+    PRIMARY KEY (`TaskID`))
+```
+
+Now add some example tasks data to the `tasks` table:
+
+```sql
+INSERT INTO `tasks` VALUES ('1', 'Project #1', '2019-04-01', '2019-04-30', '22', '37', NULL, NULL);
+INSERT INTO `tasks` VALUES ('2', 'Task #1', '2019-04-01', '2019-04-30', '22', '22', '1', NULL);
+INSERT INTO `tasks` VALUES ('3', 'Task #1.1', '2019-04-01', '2019-04-12', '10', '50', '2', NULL);
+INSERT INTO `tasks` VALUES ('4', 'Task #1.2', '2019-04-15', '2019-04-30', '12', '0', '2', '3 FS');
+INSERT INTO `tasks` VALUES ('5', 'Task #2', '2019-04-01', '2019-04-29', '21', '53', '1', NULL);
+INSERT INTO `tasks` VALUES ('6', 'Task #2.1', '2019-04-01', '2019-04-12', '10', '90', '5', '');
+INSERT INTO `tasks` VALUES ('7', 'Task #2.2', '2019-04-15', '2019-04-29', '11', '21', '5', '6 FS');
+INSERT INTO `tasks` VALUES ('8', 'Task #3', '2019-04-01', '2019-04-08', '6', '0', '1', NULL);
+```
+
+You’ll be able to view the example tasks data by running the following query:
+
+```sql
+SELECT * FROM tasks;
+```
+
+## Running
+
+```
+node server.js
+```
 
 We have to install WebDriver and also need to ensure it is updated. Open a separate terminal and run the below npm script.
 
@@ -45,21 +114,9 @@ Open another terminal and run the below npm script. It will start web server to 
 npm run serve
 ```
 
-Once the web server is up and running, we can run the end-to-end tests using the below npm script
-
-```
-npm run test
-```
-
-> **Note:** Since Protractor is using the Selenium Standalone Server, the Java Development Kit (JDK) need to be installed in your local machine.
-
-If JDK is not installed in your local machine, you can download it from [here](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
-
-## Running
-
 The application is configured with `browser-sync`, so it will serve the web application in your default browser.
 
-We used `SystemJS` for module loading.
+`SystemJS` is used for module loading.
 
 You can use the below npm script to run the web application.
 
@@ -67,9 +124,11 @@ You can use the below npm script to run the web application.
 npm run start
 ```
 
+You should see your Syncfusion Gantt chart with the tasks we populated our MySQL database with.
+
 ## Resources
 
-You can also refer the below resources to know more details about Essential JS 2 components.
+You can also refer the below resources to know more details about Syncfusion's JS 2 Gantt components.
 
-* [Pure JS Demos](http://ej2.syncfusion.com/demos/)
-* [Pure JS Documentation](http://ej2.syncfusion.com/documentation/)
+- [Pure JS Demos](http://ej2.syncfusion.com/demos/)
+- [Pure JS Documentation](http://ej2.syncfusion.com/documentation/)

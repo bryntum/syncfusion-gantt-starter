@@ -1,3 +1,5 @@
+import { DataManager, UrlAdaptor } from '@syncfusion/ej2-data';
+import { registerLicense } from '@syncfusion/ej2-base';
 import {
   Gantt,
   Toolbar,
@@ -7,19 +9,15 @@ import {
   ContextMenu,
 } from '@syncfusion/ej2-gantt';
 
-import { registerLicense } from '@syncfusion/ej2-base';
-
-import { DataManager, UrlAdaptor } from '@syncfusion/ej2-data';
-
 let dataSource: DataManager = new DataManager({
   url: 'http://localhost:3001/api/ganttData',
   adaptor: new UrlAdaptor(),
   batchUrl: 'http://localhost:3001/api/batchData',
 });
 
-Gantt.Inject(Toolbar, Edit, ContextMenu, Selection, Sort);
-
 registerLicense('<your-license-key>');
+
+Gantt.Inject(Toolbar, Edit, ContextMenu, Selection, Sort);
 
 let gantt: Gantt = new Gantt({
   dataSource: dataSource,
