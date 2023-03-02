@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 
 app.post('/api/ganttData', (req, res) => {
   var ganttData = [];
-  pool.query(`SELECT * FROM tasks`, (error, results, fields) => {
+  pool.query(`SELECT * FROM syncTasks`, (error, results, fields) => {
     if (error) throw error;
     for (let i = 0; i < results.length; i++) {
       let task = {
@@ -45,7 +45,6 @@ app.post('/api/ganttData', (req, res) => {
       };
       ganttData.push(task);
     }
-    // console.log('ganttData: ', ganttData);
     res.json({ result: ganttData, count: ganttData.length });
   });
 });
@@ -56,7 +55,7 @@ app.post('/api/batchData', (req, res) => {
 
     for (let i = 0; i < changed.length; i++) {
       pool.query(
-        `UPDATE tasks SET TaskName = ?, StartDate = ?, EndDate = ?, Duration = ?, Progress = ?, ParentID = ?, Predecessor = ? WHERE TaskID = ?`,
+        `UPDATE syncTasks SET TaskName = ?, StartDate = ?, EndDate = ?, Duration = ?, Progress = ?, ParentID = ?, Predecessor = ? WHERE TaskID = ?`,
         [
           changed[i].TaskName,
           new Date(changed[i].StartDate).toISOString().slice(0, 10),
@@ -77,7 +76,7 @@ app.post('/api/batchData', (req, res) => {
     const added = req.body.added[0];
 
     pool.query(
-      `INSERT INTO tasks (TaskID, TaskName, StartDate, EndDate, Duration, Progress, Predecessor, ParentID) VALUES (?,?,?,?,?,?,?,?)`,
+      `INSERT INTO syncTasks (TaskID, TaskName, StartDate, EndDate, Duration, Progress, Predecessor, ParentID) VALUES (?,?,?,?,?,?,?,?)`,
       [
         added.TaskID,
         added.TaskName,
@@ -98,8 +97,8 @@ app.post('/api/batchData', (req, res) => {
 
     pool.query(
       `DELETE t1, t2
-      FROM tasks t1
-      LEFT JOIN tasks t2 ON t1.TaskID = t2.ParentID
+      FROM syncTasks t1
+      LEFT JOIN syncTasks t2 ON t1.TaskID = t2.ParentID
       WHERE t1.TaskID = ?;`,
       [deleted[0].TaskID],
       (error, results, fields) => {

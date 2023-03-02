@@ -65,7 +65,7 @@ USE syncfusion-gantt;
 Let’s create the table that we’ll need for our Syncfusion Gantt chart data:
 
 ```sql
-CREATE TABLE `tasks` (
+CREATE TABLE `syncTasks` (
     `TaskID` int NOT NULL,
     `TaskName` varchar(255) DEFAULT NULL,
     `StartDate` date DEFAULT NULL,
@@ -77,23 +77,23 @@ CREATE TABLE `tasks` (
     PRIMARY KEY (`TaskID`))
 ```
 
-Now add some example tasks data to the `tasks` table:
+Now add some example tasks data to the `syncTasks` table:
 
 ```sql
-INSERT INTO `tasks` VALUES ('1', 'Project #1', '2019-04-01', '2019-04-30', '22', '37', NULL, NULL);
-INSERT INTO `tasks` VALUES ('2', 'Task #1', '2019-04-01', '2019-04-30', '22', '22', '1', NULL);
-INSERT INTO `tasks` VALUES ('3', 'Task #1.1', '2019-04-01', '2019-04-12', '10', '50', '2', NULL);
-INSERT INTO `tasks` VALUES ('4', 'Task #1.2', '2019-04-15', '2019-04-30', '12', '0', '2', '3 FS');
-INSERT INTO `tasks` VALUES ('5', 'Task #2', '2019-04-01', '2019-04-29', '21', '53', '1', NULL);
-INSERT INTO `tasks` VALUES ('6', 'Task #2.1', '2019-04-01', '2019-04-12', '10', '90', '5', '');
-INSERT INTO `tasks` VALUES ('7', 'Task #2.2', '2019-04-15', '2019-04-29', '11', '21', '5', '6 FS');
-INSERT INTO `tasks` VALUES ('8', 'Task #3', '2019-04-01', '2019-04-08', '6', '0', '1', NULL);
+INSERT INTO `syncTasks` VALUES ('1', 'Project #1', '2019-04-01', '2019-04-30', '22', '37', NULL, NULL);
+INSERT INTO `syncTasks` VALUES ('2', 'Task #1', '2019-04-01', '2019-04-30', '22', '22', '1', NULL);
+INSERT INTO `syncTasks` VALUES ('3', 'Task #1.1', '2019-04-01', '2019-04-12', '10', '50', '2', NULL);
+INSERT INTO `syncTasks` VALUES ('4', 'Task #1.2', '2019-04-15', '2019-04-30', '12', '0', '2', '3 FS');
+INSERT INTO `syncTasks` VALUES ('5', 'Task #2', '2019-04-01', '2019-04-29', '21', '53', '1', NULL);
+INSERT INTO `syncTasks` VALUES ('6', 'Task #2.1', '2019-04-01', '2019-04-12', '10', '90', '5', '');
+INSERT INTO `syncTasks` VALUES ('7', 'Task #2.2', '2019-04-15', '2019-04-29', '11', '21', '5', '6 FS');
+INSERT INTO `syncTasks` VALUES ('8', 'Task #3', '2019-04-01', '2019-04-08', '6', '0', '1', NULL);
 ```
 
 You’ll be able to view the example tasks data by running the following query:
 
 ```sql
-SELECT * FROM tasks;
+SELECT * FROM syncTasks;
 ```
 
 ## Running
