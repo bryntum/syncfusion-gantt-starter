@@ -1,13 +1,13 @@
 # Syncfusion Gantt with CRUD
 
-This project is a JS Syncfusion Gantt application with a server for perfroming CRUD operations.
+This project is a JS Syncfusion Gantt application with a server for performing CRUD operations.
 
 ## Getting Started
 
 To get started you need to clone the repository and navigate into the folder.
 
 ```
-git clone https://github.com/ritza-co/syncfusion-gantt-starter syncfusion-gantt
+git clone https://github.com/bryntum/syncfusion-gantt-starter syncfusion-gantt
 cd syncfusion-gantt
 ```
 
@@ -37,7 +37,7 @@ Create a .env file in the root folder and add the following lines for connecting
 DB_HOST='localhost'
 DB_USER='root'
 DB_PASSWORD='<your-password>'
-DB_DATABASE='syncfusion-gantt'
+DB_DATABASE='syncfusion'
 ```
 
 Don’t forget to add the root password for your MySQL server.
@@ -50,16 +50,16 @@ We’ll write our MySQL queries in the query tab and execute the queries by pres
 
 Creating a MySQL database for the Syncfusion data: Adding a table and adding example data.
 
-Let’s run some MySQL queries in MySQL Workbench to create, use, and populate a database for our Syncfusion Gantt. Execute the following query to create a database called `syncfusion-gantt`:
+Let’s run some MySQL queries in MySQL Workbench to create, use, and populate a database for our Syncfusion Gantt. Execute the following query to create a database called `syncfusion`:
 
 ```sql
-CREATE DATABASE syncfusion-gantt;
+CREATE DATABASE syncfusion;
 ```
 
 Run the following query so that we set our newly created database for use:
 
 ```sql
-USE syncfusion-gantt;
+USE syncfusion;
 ```
 
 Let’s create the table that we’ll need for our Syncfusion Gantt chart data:
@@ -74,7 +74,7 @@ CREATE TABLE `syncTasks` (
     `Progress` int DEFAULT NULL,
     `ParentID` int DEFAULT NULL,
     `Predecessor` varchar(255) DEFAULT NULL,
-    PRIMARY KEY (`TaskID`))
+    PRIMARY KEY (`TaskID`));
 ```
 
 Now add some example tasks data to the `syncTasks` table:
