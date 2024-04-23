@@ -6,24 +6,24 @@ This project is a JS Syncfusion Gantt application with a server for performing C
 
 To get started you need to clone the repository and navigate into the folder.
 
-```
+```sh
 git clone https://github.com/bryntum/syncfusion-gantt-starter syncfusion-gantt
 cd syncfusion-gantt
 ```
 
 ## Installing
 
-We already configure the required packages in the `package.json` file.
+We already configured the required packages in the `package.json` file.
 
 You can run the below command to install all dependent packages related to this project.
 
-```
+```sh
 npm install
 ```
 
 ## License Key
 
-You need a license key from Syncfusion to initialize the project. Fist sign in to [Synfusion]() then navigate to [this page](https://www.syncfusion.com/account/manage-trials/downloads), and click the "Get License Key" button.
+You need a license key from Syncfusion to initialize the project. Fist sign in to [Synfusion](https://www.syncfusion.com) then navigate to [this page](https://www.syncfusion.com/account/manage-trials/downloads), and click the "Get License Key" button.
 
 Once you have your license key, swap out the `'<your-license-key>'` string in `src/app.ts` with your license key.
 
@@ -31,26 +31,26 @@ Once you have your license key, swap out the `'<your-license-key>'` string in `s
 
 In the `server.js` file, the Express server uses the MySQL2 library to connect to MySQL and run queries.
 
-Create a .env file in the root folder and add the following lines for connecting to the MySQL database that we’ll create:
+Create a `.env` file in the root folder and add the following lines for connecting to the MySQL database that we’ll create:
 
-```bash
+```sh
 DB_HOST='localhost'
-DB_USER='root'
+DB_USERNAME='root'
 DB_PASSWORD='<your-password>'
 DB_DATABASE='syncfusion'
 ```
 
 Don’t forget to add the root password for your MySQL server.
 
-We’ll install MySQL Server and MySQL Workbench. MySQL Workbench is a MySQL GUI that we’ll use to create a database with tables for the Gantt data and to run queries. Download MySQL Server and MySQL Workbench from the MySQL community downloads page. If you’re using Windows, you can use the MySQL Installer to download the MySQL products. Use the default configurations when configuring MySQL Server and Workbench. Make sure that you configure the MySQL Server to start at system startup for convenience.
+We’ll install MySQL Server and MySQL Workbench. MySQL Workbench is a MySQL GUI that we’ll use to create a database with tables for the Gantt data and to run queries. Download MySQL Server and MySQL Workbench from the [MySQL community downloads page](https://dev.mysql.com/downloads/). If you’re using Windows, you can use the MySQL Installer to download the MySQL products. Use the default configurations when configuring MySQL Server and Workbench. Make sure that you configure the MySQL Server to start at system startup for your convenience.
 
 Open the MySQL Workbench desktop application. Open the local instance of the MySQL Server that you configured.
 
 We’ll write our MySQL queries in the query tab and execute the queries by pressing the yellow lightning bolt button.
 
-Creating a MySQL database for the Syncfusion data: Adding a table and adding example data.
+### Creating a MySQL database for the Syncfusion data: Adding a table and adding example data.
 
-Let’s run some MySQL queries in MySQL Workbench to create, use, and populate a database for our Syncfusion Gantt. Execute the following query to create a database called `syncfusion`:
+Let’s run some MySQL queries in MySQL Workbench to create, and populate a database for our Syncfusion Gantt. Execute the following query to create a database called `syncfusion`:
 
 ```sql
 CREATE DATABASE syncfusion;
@@ -98,19 +98,21 @@ SELECT * FROM syncTasks;
 
 ## Running
 
-```
+In a terminal in the project run the following command to start the API server.
+
+```sh
 node server.js
 ```
 
 We have to install WebDriver and also need to ensure it is updated. Open a separate terminal and run the below npm script.
 
-```
+```sh
 npm run update-webdriver
 ```
 
-Open another terminal and run the below npm script. It will start web server to serve our application.
+Open another terminal and run the below npm script. It will start a web server to serve our application.
 
-```
+```sh
 npm run serve
 ```
 
@@ -120,11 +122,11 @@ The application is configured with `browser-sync`, so it will serve the web appl
 
 You can use the below npm script to run the web application.
 
-```
+```sh
 npm run start
 ```
 
-You should see your Syncfusion Gantt chart with the tasks we populated our MySQL database with.
+You should see your Syncfusion Gantt chart with the tasks at http://localhost:3000.
 
 ## Resources
 
